@@ -21,12 +21,12 @@ namespace Fashion.Model.Models
         /// <summary>
         /// 登录账号
         /// </summary>
-        [SugarColumn(Length = 60, IsNullable = true)]
+        [SugarColumn(Length = 60, IsNullable = false)]
         public string LoginName { get; set; }
         /// <summary>
         /// 登录密码
         /// </summary>
-        [SugarColumn(Length = 30, IsNullable = true)]
+        [SugarColumn(Length = 50, IsNullable = false)]
         public string Password { get; set; }
 		/// <summary>
 		/// 手机号码

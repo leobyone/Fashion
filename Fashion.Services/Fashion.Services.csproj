@@ -18,7 +18,6 @@
     <ProjectReference Include="..\Fashion.Common\Fashion.Common.csproj" />
     <ProjectReference Include="..\Fashion.IRepositoty\Fashion.IRepositoty.csproj" />
     <ProjectReference Include="..\Fashion.IServices\Fashion.IServices.csproj" />
-    <ProjectReference Include="..\Fashion.Model\Fashion.Model.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -115,9 +115,134 @@
             返回数据集合
             </summary>
         </member>
+        <member name="T:Fashion.Model.Models.Attribute">
+            <summary>
+            属性表
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Models.Attribute.Name">
+            <summary>
+            属性名称
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Models.Attribute.AttributeGroupId">
+            <summary>
+            分组id
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Models.Attribute.ShowType">
+            <summary>
+            展示类型(0代表文字,1代表图片)
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Models.Attribute.IsFilter">
+            <summary>
+            是否是筛选属性
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Models.Attribute.OrderSort">
+            <summary>
+            排序
+            </summary>
+        </member>
+        <member name="T:Fashion.Model.Models.AttributeGroup">
+            <summary>
+            属性分组表
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Models.AttributeGroup.Name">
+            <summary>
+            分组名称
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Models.AttributeGroup.CategoryId">
+            <summary>
+            分类id
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Models.AttributeGroup.OrderSort">
+            <summary>
+            分组排序
+            </summary>
+        </member>
+        <member name="T:Fashion.Model.Models.AttributeValue">
+            <summary>
+            属性值表
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Models.AttributeValue.AttributeId">
+            <summary>
+            属性id
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Models.AttributeValue.Value">
+            <summary>
+            属性值
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Models.AttributeValue.OrderSort">
+            <summary>
+            属性值排序
+            </summary>
+        </member>
         <member name="P:Fashion.Model.Models.BaseEntity.Id">
             <summary>
             ID
+            </summary>
+        </member>
+        <member name="T:Fashion.Model.Models.Brand">
+            <summary>
+            品牌表
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Models.Brand.Name">
+            <summary>
+            品牌名称
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Models.Brand.Logo">
+            <summary>
+            品牌logo
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Models.Brand.OrderSort">
+            <summary>
+            品牌排序
+            </summary>
+        </member>
+        <member name="T:Fashion.Model.Models.Category">
+            <summary>
+            分类表
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Models.Category.Name">
+            <summary>
+            分类名称
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Models.Category.ParentId">
+            <summary>
+            父id
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Models.Category.Layer">
+            <summary>
+            层级
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Models.Category.HasChild">
+            <summary>
+            是否有子节点
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Models.Category.OrderSort">
+            <summary>
+            分类排序
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Models.Category.Path">
+            <summary>
+            分类路径
             </summary>
         </member>
         <member name="T:Fashion.Model.Models.Module">
@@ -319,6 +444,181 @@
              <summary>
             获取或设置是否禁用，逻辑上的删除，非物理删除
              </summary>
+        </member>
+        <member name="T:Fashion.Model.Models.Product">
+            <summary>
+            商品表
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Models.Product.PSN">
+            <summary>
+            商品货号
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Models.Product.CategoryId">
+            <summary>
+            商品分类id
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Models.Product.BrandId">
+            <summary>
+            商品品牌id
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Models.Product.SKUGid">
+            <summary>
+            商品sku组id
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Models.Product.Name">
+            <summary>
+            商品名称
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Models.Product.ShopPrice">
+            <summary>
+            商品商城价
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Models.Product.MarketPrice">
+            <summary>
+            商品市场价
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Models.Product.CostPrice">
+            <summary>
+            商品成本价
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Models.Product.State">
+            <summary>
+            0代表上架，1代表下架，2代表回收站
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Models.Product.IsBest">
+            <summary>
+            商品是否精品
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Models.Product.IsHot">
+            <summary>
+            商品是否热销
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Models.Product.IsNew">
+            <summary>
+            商品是否新品
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Models.Product.OrderSort">
+            <summary>
+            商品排序
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Models.Product.Weight">
+            <summary>
+            商品重量
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Models.Product.ShowImg">
+            <summary>
+            商品展示图片
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Models.Product.SaleCount">
+            <summary>
+            销售数
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Models.Product.VisitCount">
+            <summary>
+            访问数
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Models.Product.ReviewCount">
+            <summary>
+            评价数
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Models.Product.Star1">
+            <summary>
+            评价星星1
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Models.Product.Star2">
+            <summary>
+            评价星星2
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Models.Product.Star3">
+            <summary>
+            评价星星3
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Models.Product.Star4">
+            <summary>
+            评价星星4
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Models.Product.Star5">
+            <summary>
+            评价星星5
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Models.Product.Description">
+            <summary>
+            商品描述
+            </summary>
+        </member>
+        <member name="T:Fashion.Model.Models.ProductImage">
+             <summary>
+            商品图片表
+             </summary>
+        </member>
+        <member name="P:Fashion.Model.Models.ProductImage.ProductId">
+            <summary>
+            商品id
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Models.ProductImage.ShowImg">
+            <summary>
+            商品图片
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Models.ProductImage.IsMain">
+            <summary>
+            是否为主图
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Models.ProductImage.OrderSort">
+            <summary>
+            商品图片排序
+            </summary>
+        </member>
+        <member name="T:Fashion.Model.Models.ProductSku">
+            <summary>
+            商品sku表
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Models.ProductSku.SKUGid">
+            <summary>
+            sku组id
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Models.ProductSku.ProductId">
+            <summary>
+            商品id
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Models.ProductSku.AttributeId">
+            <summary>
+            属性id
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Models.ProductSku.AttributeValueId">
+            <summary>
+            属性值id
+            </summary>
         </member>
         <member name="T:Fashion.Model.Models.Role">
             <summary>

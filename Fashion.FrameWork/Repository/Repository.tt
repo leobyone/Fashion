@@ -76,6 +76,7 @@ namespace Fashion.Repository
 
 using System;
 using Fashion.IRepository;
+using Fashion.IRepositoty.UnitOfWork;
 using Fashion.Model.Models;
 
 namespace Fashion.Repository
@@ -85,8 +86,10 @@ namespace Fashion.Repository
 	/// </summary>	
 	public class <#=row["TABLE_NAME"].ToString()#>Repository : BaseRepository<<#=row["TABLE_NAME"].ToString()#>>, I<#=row["TABLE_NAME"].ToString() #>Repository
     {
+       	public <#=row["TABLE_NAME"].ToString()#>Repository(IUnitOfWork unitOfWork) : base(unitOfWork)
+		{
 
-       
+		}
     }
 }
 

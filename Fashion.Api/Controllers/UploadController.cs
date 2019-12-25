@@ -34,7 +34,7 @@ namespace Fashion.Api.Controllers
 		}
 
 		/// <summary>
-		/// 实现将文件上传到七牛云
+		/// 将文件上传到七牛云
 		/// </summary>
 		/// <param name="stream">文件流</param>
 		/// <param name="fileName">文件名称</param>

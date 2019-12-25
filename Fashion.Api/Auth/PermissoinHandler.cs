@@ -24,6 +24,8 @@ namespace Fashion.Api.Auth
 		/// 验证方案提供对象
 		/// </summary>
 		public IAuthenticationSchemeProvider Schemes { get; set; }
+		private readonly IHttpContextAccessor _accessor;
+
 
 		/// <summary>
 		/// services 层注入
@@ -35,8 +37,10 @@ namespace Fashion.Api.Auth
 		/// </summary>
 		/// <param name="schemes"></param>
 		/// <param name="roleModulePermissionServices"></param>
-		public PermissionHandler(IAuthenticationSchemeProvider schemes, IRoleModulePermissionServices roleModulePermissionServices)
+		/// <param name="accessor"></param>
+		public PermissionHandler(IAuthenticationSchemeProvider schemes, IRoleModulePermissionServices roleModulePermissionServices, IHttpContextAccessor accessor)
 		{
+			_accessor = accessor;
 			Schemes = schemes;
 			this.RoleModulePermissionServices = roleModulePermissionServices;
 		}
@@ -44,6 +48,15 @@ namespace Fashion.Api.Auth
 		// 重写异步处理程序
 		protected override async Task HandleRequirementAsync(AuthorizationHandlerContext context, PermissionRequirement requirement)
 		{
+			/*
+             * 
+             * 首先必须在 controller 上进行配置 Authorize ，可以策略授权，也可以角色等基本授权
+             * 
+             * 1、开启公约， startup 中的全局授权过滤公约：o.Conventions.Insert(0, new GlobalRouteAuthorizeConvention());
+             * 
+             * 2、不开启公约，使用 IHttpContextAccessor ，也能实现效果；
+             */
+
 			// 将最新的角色和接口列表更新
 			var data = await RoleModulePermissionServices.GetRoleModule();
 			var list = (from item in data
@@ -61,6 +74,12 @@ namespace Fashion.Api.Auth
 			//从AuthorizationHandlerContext转成HttpContext，以便取出表求信息
 			var filterContext = (context.Resource as Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext);
 			var httpContext = (context.Resource as Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext)?.HttpContext;
+
+			if (httpContext == null)
+			{
+				httpContext = _accessor.HttpContext;
+			}
+
 			//请求Url
 			if (httpContext != null)
 			{
@@ -71,17 +90,8 @@ namespace Fashion.Api.Auth
 				{
 					if (await handlers.GetHandlerAsync(httpContext, scheme.Name) is IAuthenticationRequestHandler handler && await handler.HandleRequestAsync())
 					{
-						//context.Fail();
-						//return;
-
-
-						//自定义返回数据
-						var payload = JsonConvert.SerializeObject(new { Code = "401", Message = "很抱歉，您无权访问该接口!" });
-						httpContext.Response.StatusCode = StatusCodes.Status401Unauthorized;
-						filterContext.Result = new JsonResult(payload);
-						context.Succeed(requirement);
+						context.Fail();
 						return;
-
 					}
 				}
 				//判断请求是否拥有凭据，即有没有登录
@@ -92,26 +102,7 @@ namespace Fashion.Api.Auth
 					//result?.Principal不为空即登录成功
 					if (result?.Principal != null)
 					{
-
 						httpContext.User = result.Principal;
-
-						// 取消对URL的判断，因为只需判断该角色下是否匹配当前URL即可，若不匹配都是无效请求
-						//var isMatchUrl = false;
-						//var permisssionGroup = requirement.Permissions.GroupBy(g => g.Url);
-						//foreach (var item in permisssionGroup)
-						//{
-						//    try
-						//    {
-						//        if (Regex.Match(questUrl, item.Key?.ObjToString().ToLower())?.Value == questUrl)
-						//        {
-						//            isMatchUrl = true;
-						//            break;
-						//        }
-						//    }
-						//    catch (Exception)
-						//    {
-						//    }
-						//}
 
 						//权限中是否存在请求的url
 						//if (requirement.Permissions.GroupBy(g => g.Url).Where(w => w.Key?.ToLower() == questUrl).Count() > 0)
@@ -145,31 +136,11 @@ namespace Fashion.Api.Auth
 							//if (currentUserRoles.Count <= 0 || requirement.Permissions.Where(w => currentUserRoles.Contains(w.Role) && w.Url.ToLower() == questUrl).Count() <= 0)
 							if (currentUserRoles.Count <= 0 || !isMatchRole)
 							{
-
-
-								// 可以在这里设置跳转页面
-								//httpContext.Response.Redirect(requirement.DeniedAction);
-								//context.Succeed(requirement);
-								//return;
-
-
-
-								//自定义返回数据
-								var payload = JsonConvert.SerializeObject(new { Code = "403", Message = "很抱歉，您无权访问该接口!" });
-								httpContext.Response.StatusCode = StatusCodes.Status403Forbidden;
-								filterContext.Result = new JsonResult(payload);
-								context.Succeed(requirement);
+								context.Fail();
 								return;
-
-
 							}
 						}
-						//else
-						//{
-						//    context.Fail();
-						//    return;
 
-						//}
 						//判断过期时间（这里仅仅是最坏验证原则，你可以不要这个if else的判断，因为我们使用的官方验证，Token过期后上边的result?.Principal 就为 null 了，进不到这里了，因此这里其实可以不用验证过期时间，只是做最后严谨判断）
 						if ((httpContext.User.Claims.SingleOrDefault(s => s.Type == ClaimTypes.Expiration)?.Value) != null && DateTime.Parse(httpContext.User.Claims.SingleOrDefault(s => s.Type == ClaimTypes.Expiration)?.Value) >= DateTime.Now)
 						{
@@ -177,32 +148,17 @@ namespace Fashion.Api.Auth
 						}
 						else
 						{
-							//context.Fail();
-							//return;
-
-
-							//自定义返回数据
-							var payload = JsonConvert.SerializeObject(new { Code = "401", Message = "很抱歉，您无权访问该接口!" });
-							httpContext.Response.StatusCode = StatusCodes.Status401Unauthorized;
-							filterContext.Result = new JsonResult(payload);
-							context.Succeed(requirement);
+							context.Fail();
 							return;
 						}
 						return;
 					}
 				}
 				//判断没有登录时，是否访问登录的url,并且是Post请求，并且是form表单提交类型，否则为失败
-				if (!questUrl.Equals(requirement.LoginPath.ToLower(), StringComparison.Ordinal) && (!httpContext.Request.Method.Equals("POST")
-																									|| !httpContext.Request.HasFormContentType))
+				if (!questUrl.Equals(requirement.LoginPath.ToLower(), StringComparison.Ordinal) && (!httpContext.Request.Method.Equals("POST") || !httpContext.Request.HasFormContentType))
 				{
-					//context.Fail();
-					//return;
-
-
-					//自定义返回数据
-					var payload = JsonConvert.SerializeObject(new { Code = "401", Message = "很抱歉，您无权访问该接口!" });
-					httpContext.Response.StatusCode = StatusCodes.Status401Unauthorized;
-					filterContext.Result = new JsonResult(payload);
+					context.Fail();
+					return;
 				}
 			}
 

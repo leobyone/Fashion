@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Fashion.Common.Helper
+namespace Fashion.Common
 {
 	public class AppSettingsHelper
 	{
