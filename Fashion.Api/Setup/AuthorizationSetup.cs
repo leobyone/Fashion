@@ -13,10 +13,10 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Fashion.Api.Extensions
+namespace Fashion.Api.Setup
 {
 	/// <summary>
-	/// 授权服务
+	/// 授权设置
 	/// </summary>
 	public static class AuthorizationSetup
 	{
@@ -80,7 +80,6 @@ namespace Fashion.Api.Extensions
 
 			#endregion
 
-
 			#region 参数
 			//读取配置文件
 			var symmetricKeyAsBase64 = AppSettingsHelper.app(new string[] { "Audience", "Secret" });
@@ -88,7 +87,6 @@ namespace Fashion.Api.Extensions
 			var signingKey = new SymmetricSecurityKey(keyByteArray);
 			var Issuer = AppSettingsHelper.app(new string[] { "Audience", "Issuer" });
 			var Audience = AppSettingsHelper.app(new string[] { "Audience", "Audience" });
-
 			var signingCredentials = new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256);
 
 			// 如果要数据库动态绑定，这里先留个空，后边处理器里动态赋值
@@ -114,8 +112,6 @@ namespace Fashion.Api.Extensions
 						 policy => policy.Requirements.Add(permissionRequirement));
 			});
 
-
-
 			// 令牌验证参数
 			var tokenValidationParameters = new TokenValidationParameters
 			{
@@ -132,7 +128,8 @@ namespace Fashion.Api.Extensions
 
 			//2.1【认证】、core自带官方JWT认证
 			// 开启Bearer认证
-			services.AddAuthentication(o => {
+			services.AddAuthentication(o =>
+			{
 				o.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
 				o.DefaultChallengeScheme = nameof(ApiResponseHandler);
 				o.DefaultForbidScheme = nameof(ApiResponseHandler);
@@ -165,7 +162,6 @@ namespace Fashion.Api.Extensions
 			//      options.RequireHttpsMetadata = false;
 			//      options.ApiName = "blog.core.api";
 			//  });
-
 
 
 			// 注入权限处理器

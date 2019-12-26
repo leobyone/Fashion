@@ -185,6 +185,26 @@
             属性值排序
             </summary>
         </member>
+        <member name="T:Fashion.Model.Models.Banner">
+            <summary>
+            轮播图片表
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Models.Banner.Title">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Models.Banner.Url">
+            <summary>
+            链接
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Models.Banner.OrderSort">
+            <summary>
+            排序
+            </summary>
+        </member>
         <member name="P:Fashion.Model.Models.BaseEntity.Id">
             <summary>
             ID
@@ -243,6 +263,26 @@
         <member name="P:Fashion.Model.Models.Category.Path">
             <summary>
             分类路径
+            </summary>
+        </member>
+        <member name="T:Fashion.Model.Models.FriendLink">
+            <summary>
+            友情链接
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Models.FriendLink.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Models.FriendLink.Url">
+            <summary>
+            链接
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Models.FriendLink.OrderSort">
+            <summary>
+            排序
             </summary>
         </member>
         <member name="T:Fashion.Model.Models.Module">
@@ -328,6 +368,26 @@
         <member name="P:Fashion.Model.Models.ModulePermission.PermissionId">
             <summary>
             按钮ID
+            </summary>
+        </member>
+        <member name="T:Fashion.Model.Models.Navigation">
+            <summary>
+            导航菜单
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Models.Navigation.Name">
+            <summary>
+            菜单名称
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Models.Navigation.Url">
+            <summary>
+            链接
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Models.Navigation.OrderSort">
+            <summary>
+            排序
             </summary>
         </member>
         <member name="T:Fashion.Model.Models.OperateLog">
@@ -618,6 +678,16 @@
         <member name="P:Fashion.Model.Models.ProductSku.AttributeValueId">
             <summary>
             属性值id
+            </summary>
+        </member>
+        <member name="T:Fashion.Model.Models.Region">
+            <summary>
+            区域表
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Models.Region.OrderSort">
+            <summary>
+            排序
             </summary>
         </member>
         <member name="T:Fashion.Model.Models.Role">

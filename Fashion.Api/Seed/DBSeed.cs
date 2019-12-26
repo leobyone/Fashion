@@ -45,6 +45,9 @@ namespace Fashion.Api.Seed
 					typeof(ProductImage),
 					typeof(Brand),
 					typeof(Category),
+					typeof(Banner),
+					typeof(Region),
+					typeof(Navigation),
 					typeof(Fashion.Model.Models.Attribute),
 					typeof(AttributeGroup),
 					typeof(AttributeValue));
