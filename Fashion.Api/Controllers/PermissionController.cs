@@ -14,7 +14,6 @@ namespace Fashion.Api.Controllers
 {
 	[Route("api/[controller]")]
 	[ApiController]
-	[Authorize]
 	public class PermissionController : ControllerBase
 	{
 		IPermissionServices _permissionServices;

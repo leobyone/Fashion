@@ -15,7 +15,6 @@ namespace Fashion.Api.Controllers
 {
 	[Route("api/[controller]")]
 	[ApiController]
-	[Authorize]
 	public class UserController : ControllerBase
 	{
 		private IUserServices _userServices;
@@ -43,14 +42,9 @@ namespace Fashion.Api.Controllers
 
 		[HttpGet]
 		[Route("pagelist")]
-		public async Task<MessageModel<PageModel<UserDto>>> GetPageList(int page, int size, string keyword = "")
+		public async Task<MessageModel<PageModel<UserDto>>> GetPageList(int page, int size, string conditions, string sorts)
 		{
-			if (string.IsNullOrEmpty(keyword) || string.IsNullOrWhiteSpace(keyword))
-			{
-				keyword = "";
-			}
-
-			var list = await _userServices.GetPageList(page, size, keyword);
+			var list = await _userServices.GetPageList(page, size, conditions, sorts);
 			return new MessageModel<PageModel<UserDto>>()
 			{
 				msg = "获取成功",
@@ -126,7 +120,6 @@ namespace Fashion.Api.Controllers
 						data.msg = "获取成功";
 					}
 				}
-
 			}
 			return data;
 		}

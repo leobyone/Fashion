@@ -21,7 +21,7 @@ namespace Fashion.Api.Controllers
 {
 	[Route("api/[controller]")]
 	[ApiController]
-	[Authorize]
+	//[Authorize("Permission")]
 	public class UploadController : ControllerBase
 	{
 		private readonly IHostingEnvironment _hostingEnvironment;

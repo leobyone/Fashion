@@ -45,6 +45,11 @@
             职能
             </summary>
         </member>
+        <member name="P:Fashion.Model.Dtos.BannerDto.OrderSort">
+            <summary>
+            排序
+            </summary>
+        </member>
         <member name="P:Fashion.Model.Dtos.PermissionDto.Action">
             <summary>
             执行方法

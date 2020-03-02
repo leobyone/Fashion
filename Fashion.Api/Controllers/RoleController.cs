@@ -15,7 +15,7 @@ namespace Fashion.Api.Controllers
 {
 	[Route("api/[controller]")]
 	[ApiController]
-	[Authorize]
+	//[Authorize("Permission")]
 	public class RoleController : ControllerBase
 	{
 		private IRoleServices _roleServices;

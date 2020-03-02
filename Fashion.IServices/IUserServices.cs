@@ -14,7 +14,7 @@ namespace Fashion.IServices
 
 		Task<List<User>> GetUsersByNameAndPwd(string name, string pwd);
 
-		Task<PageModel<UserDto>> GetPageList(int page, int size, string keyword);
+		Task<PageModel<UserDto>> GetPageList(int page, int size, string conditions, string sorts);
 
 		Task<int> AddUser(User user);
 

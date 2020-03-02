@@ -56,9 +56,12 @@ namespace Fashion.Services
 			return list;
 		}
 
-		public async Task<PageModel<UserDto>> GetPageList(int page, int size, string keyword)
+		public async Task<PageModel<UserDto>> GetPageList(int page, int size, string conditions, string sorts)
 		{
-			var pageModel = await baseRepository.QueryPage(t => t.IsDeleted == false && (t.LoginName != null && t.LoginName.Contains(keyword)), page, size, "Id desc");
+			List<Condition> conditionList = Util.ConvertCodiontions(conditions);
+			string sort = Util.GetSortString(sorts);
+			var where = PredicateBuilder.GetWherePredicate<User>(conditionList);
+			var pageModel = await baseRepository.QueryPage(where, page, size, sort);
 			var mapList = _mapper.Map<List<User>, List<UserDto>>(pageModel.data);
 
 			return new PageModel<UserDto>()
