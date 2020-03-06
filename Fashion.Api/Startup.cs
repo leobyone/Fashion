@@ -7,7 +7,7 @@ using Fashion.Api.Setup;
 using Fashion.Common;
 using Fashion.Common.DB;
 using Fashion.Common.Helper;
-using Fashion.Common.Log;
+using Fashion.Common.Logger;
 using Fashion.Model.Auth;
 using log4net;
 using log4net.Config;

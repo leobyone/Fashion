@@ -1,0 +1,413 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Fashion.Api</name>
+    </assembly>
+    <members>
+        <member name="T:Fashion.Api.AOP.TranAOP">
+            <summary>
+            事务拦截器TranAOP 继承IInterceptor接口
+            </summary>
+        </member>
+        <member name="M:Fashion.Api.AOP.TranAOP.Intercept(Castle.DynamicProxy.IInvocation)">
+            <summary>
+            实例化IInterceptor唯一方法 
+            </summary>
+            <param name="invocation">包含被拦截方法的信息</param>
+        </member>
+        <member name="T:Fashion.Api.Auth.JwtToken">
+            <summary>
+            JWTToken生成类
+            </summary>
+        </member>
+        <member name="M:Fashion.Api.Auth.JwtToken.BuildJwtToken(System.Security.Claims.Claim[],Fashion.Api.Auth.PermissionRequirement)">
+            <summary>
+            获取基于JWT的Token
+            </summary>
+            <param name="claims">需要在登陆的时候配置</param>
+            <param name="permissionRequirement">在startup中定义的参数</param>
+            <returns></returns>
+        </member>
+        <member name="T:Fashion.Api.Auth.PermissionRequirement">
+            <summary>
+            必要参数类，类似一个订单信息
+            继承 IAuthorizationRequirement，用于设计自定义权限处理器PermissionHandler
+            因为AuthorizationHandler 中的泛型参数 TRequirement 必须继承 IAuthorizationRequirement
+            </summary>
+        </member>
+        <member name="P:Fashion.Api.Auth.PermissionRequirement.Permissions">
+            <summary>
+            用户权限集合，一个订单包含了很多详情，
+            同理，一个网站的认证发行中，也有很多权限详情(这里是Role和URL的关系)
+            </summary>
+        </member>
+        <member name="P:Fashion.Api.Auth.PermissionRequirement.DeniedAction">
+            <summary>
+            无权限action
+            </summary>
+        </member>
+        <member name="P:Fashion.Api.Auth.PermissionRequirement.ClaimType">
+            <summary>
+            认证授权类型
+            </summary>
+        </member>
+        <member name="P:Fashion.Api.Auth.PermissionRequirement.LoginPath">
+            <summary>
+            请求路径
+            </summary>
+        </member>
+        <member name="P:Fashion.Api.Auth.PermissionRequirement.Issuer">
+            <summary>
+            发行人
+            </summary>
+        </member>
+        <member name="P:Fashion.Api.Auth.PermissionRequirement.Audience">
+            <summary>
+            订阅人
+            </summary>
+        </member>
+        <member name="P:Fashion.Api.Auth.PermissionRequirement.Expiration">
+            <summary>
+            过期时间
+            </summary>
+        </member>
+        <member name="P:Fashion.Api.Auth.PermissionRequirement.SigningCredentials">
+            <summary>
+            签名验证
+            </summary>
+        </member>
+        <member name="M:Fashion.Api.Auth.PermissionRequirement.#ctor(System.String,System.Collections.Generic.List{Fashion.Model.Auth.PermissionItem},System.String,System.String,System.String,Microsoft.IdentityModel.Tokens.SigningCredentials,System.TimeSpan)">
+            <summary>
+            构造
+            </summary>
+            <param name="deniedAction">拒约请求的url</param>
+            <param name="permissions">权限集合</param>
+            <param name="claimType">声明类型</param>
+            <param name="issuer">发行人</param>
+            <param name="audience">订阅人</param>
+            <param name="signingCredentials">签名验证实体</param>
+            <param name="expiration">过期时间</param>
+        </member>
+        <member name="P:Fashion.Api.Auth.PermissionHandler.Schemes">
+            <summary>
+            验证方案提供对象
+            </summary>
+        </member>
+        <member name="P:Fashion.Api.Auth.PermissionHandler.RoleModulePermissionServices">
+            <summary>
+            services 层注入
+            </summary>
+        </member>
+        <member name="M:Fashion.Api.Auth.PermissionHandler.#ctor(Microsoft.AspNetCore.Authentication.IAuthenticationSchemeProvider,Fashion.IServices.IRoleModulePermissionServices,Microsoft.AspNetCore.Http.IHttpContextAccessor)">
+            <summary>
+            构造函数注入
+            </summary>
+            <param name="schemes"></param>
+            <param name="roleModulePermissionServices"></param>
+            <param name="accessor"></param>
+        </member>
+        <member name="T:Fashion.Api.AutoMapper.AutoMapperConfig">
+            <summary>
+            静态全局 AutoMapper 配置文件
+            </summary>
+        </member>
+        <member name="M:Fashion.Api.AutoMapper.CustomProfile.#ctor">
+            <summary>
+            配置构造函数，用来创建关系映射
+            </summary>
+        </member>
+        <member name="M:Fashion.Api.Controllers.PermissionController.GetPermissionIdsByRoleId(System.Int32)">
+            <summary>
+            通过角色获取菜单
+            </summary>
+            <param name="roleId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fashion.Api.Controllers.PermissionController.Assign(Fashion.Model.Dtos.AssignInput)">
+            <summary>
+            保存菜单权限分配
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fashion.Api.Controllers.PermissionController.GetPermissionListByUserId(System.Int32)">
+            <summary>
+            通过用户获取菜单
+            </summary>
+            <param name="userId"></param >
+            <returns></returns>
+        </member>
+        <member name="M:Fashion.Api.Controllers.UploadController.UploadImgToQiNiu(System.Byte[],System.String)">
+            <summary>
+            将文件上传到七牛云
+            </summary>
+            <param name="stream">文件流</param>
+            <param name="fileName">文件名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:Fashion.Api.Controllers.UploadController.UploadImage(Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            上传图片
+            </summary>
+            <param name="file"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Fashion.Api.Extensions.AuthorizationSetup">
+            <summary>
+            授权服务
+            </summary>
+        </member>
+        <member name="T:Fashion.Api.Filter.GlobalExceptionsFilter">
+            <summary>
+            全局异常错误日志
+            </summary>
+        </member>
+        <member name="M:Fashion.Api.Filter.GlobalExceptionsFilter.WriteLog(System.String,System.Exception)">
+            <summary>
+            自定义返回格式
+            </summary>
+            <param name="throwMsg"></param>
+            <param name="ex"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Fashion.Api.Filter.JsonErrorResponse.Message">
+            <summary>
+            生产环境的消息
+            </summary>
+        </member>
+        <member name="P:Fashion.Api.Filter.JsonErrorResponse.DevelopmentMessage">
+            <summary>
+            开发环境的消息
+            </summary>
+        </member>
+        <member name="M:Fashion.Api.Seed.DBSeed.SeedAsync(Fashion.Api.Seed.MyContext)">
+            <summary>
+            异步添加种子数据
+            </summary>
+            <param name="myContext"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Fashion.Api.Seed.MyContext.ConnectionString">
+            <summary>
+            连接字符串 
+             
+            </summary>
+        </member>
+        <member name="P:Fashion.Api.Seed.MyContext.DbType">
+            <summary>
+            数据库类型 
+              
+            </summary>
+        </member>
+        <member name="P:Fashion.Api.Seed.MyContext.Db">
+            <summary>
+            数据连接对象 
+              
+            </summary>
+        </member>
+        <member name="P:Fashion.Api.Seed.MyContext.Context">
+            <summary>
+            数据库上下文实例（自动关闭连接）
+              
+            </summary>
+        </member>
+        <member name="M:Fashion.Api.Seed.MyContext.#ctor">
+            <summary>
+            功能描述:构造函数
+            作　　者: 
+            </summary>
+        </member>
+        <member name="M:Fashion.Api.Seed.MyContext.GetEntityDB``1">
+            <summary>
+            功能描述:获取数据库处理对象
+            作　　者: 
+            </summary>
+            <returns>返回值</returns>
+        </member>
+        <member name="M:Fashion.Api.Seed.MyContext.GetEntityDB``1(SqlSugar.SqlSugarClient)">
+            <summary>
+            功能描述:获取数据库处理对象
+            作　　者: 
+            </summary>
+            <param name="db">db</param>
+            <returns>返回值</returns>
+        </member>
+        <member name="M:Fashion.Api.Seed.MyContext.CreateClassFileByDBTalbe(System.String)">
+            <summary>
+            功能描述:根据数据库表生产实体类
+            作　　者: 
+            </summary>       
+            <param name="strPath">实体类存放路径</param>
+        </member>
+        <member name="M:Fashion.Api.Seed.MyContext.CreateClassFileByDBTalbe(System.String,System.String)">
+            <summary>
+            功能描述:根据数据库表生产实体类
+            作　　者: 
+            </summary>
+            <param name="strPath">实体类存放路径</param>
+            <param name="strNameSpace">命名空间</param>
+        </member>
+        <member name="M:Fashion.Api.Seed.MyContext.CreateClassFileByDBTalbe(System.String,System.String,System.String[])">
+            <summary>
+            功能描述:根据数据库表生产实体类
+            作　　者: 
+            </summary>
+            <param name="strPath">实体类存放路径</param>
+            <param name="strNameSpace">命名空间</param>
+            <param name="lstTableNames">生产指定的表</param>
+        </member>
+        <member name="M:Fashion.Api.Seed.MyContext.CreateClassFileByDBTalbe(System.String,System.String,System.String[],System.String,System.Boolean)">
+            <summary>
+            功能描述:根据数据库表生产实体类
+            作　　者: 
+            </summary>
+            <param name="strPath">实体类存放路径</param>
+            <param name="strNameSpace">命名空间</param>
+            <param name="lstTableNames">生产指定的表</param>
+            <param name="strInterface">实现接口</param>
+            <param name="blnSerializable">是否序列化</param>
+        </member>
+        <member name="M:Fashion.Api.Seed.MyContext.CreateTableByEntity``1(System.Boolean,``0[])">
+            <summary>
+            功能描述:根据实体类生成数据库表
+            作　　者: 
+            </summary>
+            <param name="blnBackupTable">是否备份表</param>
+            <param name="lstEntitys">指定的实体</param>
+        </member>
+        <member name="M:Fashion.Api.Seed.MyContext.CreateTableByEntity(System.Boolean,System.Type[])">
+            <summary>
+            功能描述:根据实体类生成数据库表
+            作　　者: 
+            </summary>
+            <param name="blnBackupTable">是否备份表</param>
+            <param name="lstEntitys">指定的实体</param>
+        </member>
+        <member name="M:Fashion.Api.Seed.MyContext.GetDbContext">
+            <summary>
+            功能描述:获得一个DbContext
+            作　　者: 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Fashion.Api.Seed.MyContext.Init(System.String,SqlSugar.DbType)">
+            <summary>
+            功能描述:设置初始化参数
+            作　　者: 
+            </summary>
+            <param name="strConnectionString">连接字符串</param>
+            <param name="enmDbType">数据库类型</param>
+        </member>
+        <member name="M:Fashion.Api.Seed.MyContext.GetConnectionConfig(System.Boolean,System.Boolean)">
+            <summary>
+            功能描述:创建一个链接配置
+            作　　者: 
+            </summary>
+            <param name="blnIsAutoCloseConnection">是否自动关闭连接</param>
+            <param name="blnIsShardSameThread">是否夸类事务</param>
+            <returns>ConnectionConfig</returns>
+        </member>
+        <member name="M:Fashion.Api.Seed.MyContext.GetCustomDB(SqlSugar.ConnectionConfig)">
+            <summary>
+            功能描述:获取一个自定义的DB
+            作　　者: 
+            </summary>
+            <param name="config">config</param>
+            <returns>返回值</returns>
+        </member>
+        <member name="M:Fashion.Api.Seed.MyContext.GetCustomEntityDB``1(SqlSugar.SqlSugarClient)">
+            <summary>
+            功能描述:获取一个自定义的数据库处理对象
+            作　　者: 
+            </summary>
+            <param name="sugarClient">sugarClient</param>
+            <returns>返回值</returns>
+        </member>
+        <member name="M:Fashion.Api.Seed.MyContext.GetCustomEntityDB``1(SqlSugar.ConnectionConfig)">
+            <summary>
+            功能描述:获取一个自定义的数据库处理对象
+            作　　者: 
+            </summary>
+            <param name="config">config</param>
+            <returns>返回值</returns>
+        </member>
+        <member name="T:Fashion.Api.Setup.AuthorizationSetup">
+            <summary>
+            授权设置
+            </summary>
+        </member>
+        <member name="T:Fashion.Api.Setup.CorsSetup">
+            <summary>
+            跨域设置
+            </summary>
+        </member>
+        <member name="T:Fashion.Api.Setup.DbSetup">
+            <summary>
+            数据库设置
+            </summary>
+        </member>
+        <member name="T:Fashion.Api.Setup.MiniProfilerSetup">
+            <summary>
+            MiniProfiler设置
+            </summary>
+        </member>
+        <member name="T:Fashion.Api.Setup.SqlsugarSetup">
+            <summary>
+            SqlSugar 启动服务
+            </summary>
+        </member>
+        <member name="T:Fashion.Api.Setup.SwaggerSetup">
+            <summary>
+            Swagger设置
+            </summary>
+        </member>
+        <member name="P:Fashion.Api.Startup.Repository">
+            <summary>
+            log4net 仓储库
+            </summary>
+        </member>
+        <member name="T:Fashion.Api.SwaggerHelper.CustomApiVersion">
+            <summary>
+            自定义版本
+            </summary>
+        </member>
+        <member name="T:Fashion.Api.SwaggerHelper.CustomApiVersion.ApiVersions">
+            <summary>
+            Api接口版本 自定义
+            </summary>
+        </member>
+        <member name="F:Fashion.Api.SwaggerHelper.CustomApiVersion.ApiVersions.V1">
+            <summary>
+            V1 版本
+            </summary>
+        </member>
+        <member name="F:Fashion.Api.SwaggerHelper.CustomApiVersion.ApiVersions.V2">
+            <summary>
+            V2 版本
+            </summary>
+        </member>
+        <member name="T:Fashion.Api.SwaggerHelper.CustomRouteAttribute">
+            <summary>
+            自定义路由 /api/{version}/[controler]/[action]
+            </summary>
+        </member>
+        <member name="P:Fashion.Api.SwaggerHelper.CustomRouteAttribute.GroupName">
+            <summary>
+            分组名称,是来实现接口 IApiDescriptionGroupNameProvider
+            </summary>
+        </member>
+        <member name="M:Fashion.Api.SwaggerHelper.CustomRouteAttribute.#ctor(System.String)">
+            <summary>
+            自定义路由构造函数，继承基类路由
+            </summary>
+            <param name="actionName"></param>
+        </member>
+        <member name="M:Fashion.Api.SwaggerHelper.CustomRouteAttribute.#ctor(Fashion.Api.SwaggerHelper.CustomApiVersion.ApiVersions,System.String)">
+            <summary>
+            自定义版本+路由构造函数，继承基类路由
+            </summary>
+            <param name="actionName"></param>
+            <param name="version"></param>
+        </member>
+    </members>
+</doc>

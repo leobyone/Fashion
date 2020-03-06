@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Fashion.Common.Log
+namespace Fashion.Common.Logger
 {
 	/// <summary>
 	/// 日志接口
