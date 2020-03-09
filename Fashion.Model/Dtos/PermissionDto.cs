@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Fashion.Model.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -34,5 +35,8 @@ namespace Fashion.Model.Dtos
 		/// 执行方法
 		/// </summary>
 		public string Action { get; set; }
+
+		public string Link { get; set; }
+		public bool hasChildren{ get; set; }
 	}
 }

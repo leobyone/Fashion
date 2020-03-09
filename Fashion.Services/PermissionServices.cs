@@ -23,7 +23,6 @@ namespace Fashion.Services
 		IPermissionRepository repository;
 		IUserRoleRepository _userRoleRepository;
 		IRoleModulePermissionRepository _roleModulePermissionRepository;
-		//IHttpContextAccessor _httpContext;
 		IMapper _mapper;
 
 		public PermissionServices(IPermissionRepository repository, IRoleModulePermissionRepository roleModulePermissionRepository,
@@ -34,7 +33,6 @@ namespace Fashion.Services
 			_userRoleRepository = userRoleRepository;
 			_roleModulePermissionRepository = roleModulePermissionRepository;
 			_mapper = mapper;
-			//_httpContext = httpContext;
 		}
 
 		public async Task<PermissionDto> GetPermissionById(int id)
@@ -44,10 +42,22 @@ namespace Fashion.Services
 			return dto;
 		}
 
-		public async Task<PageModel<PermissionDto>> GetPageList(int page, int size, string keyword)
+		public async Task<PageModel<PermissionDto>> GetPageList(int page, int size, string conditions, string sorts)
 		{
-			var pageModel = await repository.QueryMuchPage(keyword, page, size, "a.Id desc");
-			return pageModel;
+			List<Condition> conditionList = Util.ConvertCodiontions(conditions);
+			string sort = Util.GetSortString(sorts);
+			var where = PredicateBuilder.GetWherePredicate<Permission>(conditionList);
+			var pageModel = await baseRepository.QueryPage(where, page, size, sort);
+			var mapList = _mapper.Map<List<Permission>, List<PermissionDto>>(pageModel.data);
+
+			return new PageModel<PermissionDto>()
+			{
+				page = pageModel.page,
+				dataCount = pageModel.dataCount,
+				pageCount = pageModel.pageCount,
+				PageSize = pageModel.page,
+				data = mapList
+			};
 		}
 
 		/// <summary>

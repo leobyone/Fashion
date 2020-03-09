@@ -52,7 +52,7 @@ namespace Fashion.Api.Controllers
 			// 如果需要设置为"覆盖"上传(如果云端已有同名文件则覆盖)，请使用 SCOPE = "BUCKET:KEY"
 			// putPolicy.Scope = bucket + ":" + saveKey;
 			var saveKey = string.Format("images/{0}/", DateTime.Now.ToString("yyyy/MM/dd")) + fileName;
-			putPolicy.Scope = "fashion-images:" + saveKey;
+			putPolicy.Scope = "fashion-test:" + saveKey;
 			// 上传策略有效期(对应于生成的凭证的有效期)          
 			putPolicy.SetExpires(3600);
 			// 上传到云端多少天后自动删除该文件，如果不设置（即保持默认默认）则不删除

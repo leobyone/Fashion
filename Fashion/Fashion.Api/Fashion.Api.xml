@@ -116,6 +116,13 @@
             配置构造函数，用来创建关系映射
             </summary>
         </member>
+        <member name="M:Fashion.Api.Controllers.PermissionController.GetTreeTable(System.Int32)">
+            <summary>
+            查询树形 Table
+            </summary>
+            <param name="parentId">父节点</param>
+            <returns></returns>
+        </member>
         <member name="M:Fashion.Api.Controllers.PermissionController.GetPermissionIdsByRoleId(System.Int32)">
             <summary>
             通过角色获取菜单

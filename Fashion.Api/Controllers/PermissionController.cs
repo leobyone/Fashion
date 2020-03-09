@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Fashion.IServices;
 using Fashion.Model;
 using Fashion.Model.Dtos;
@@ -17,12 +18,20 @@ namespace Fashion.Api.Controllers
 	public class PermissionController : ControllerBase
 	{
 		IPermissionServices _permissionServices;
+		IModuleServices _moduleServices;
 		IRoleModulePermissionServices _roleModulePermissionServices;
+		IMapper _mapper;
 
-		public PermissionController(IPermissionServices permissionServices, IRoleModulePermissionServices roleModulePermissionServices)
+		public PermissionController(
+			IPermissionServices permissionServices,
+			IModuleServices moduleServices,
+			IRoleModulePermissionServices roleModulePermissionServices,
+			IMapper mapper)
 		{
 			_permissionServices = permissionServices;
+			_moduleServices = moduleServices;
 			_roleModulePermissionServices = roleModulePermissionServices;
+			_mapper = mapper;
 		}
 
 		[HttpGet]
@@ -108,15 +117,50 @@ namespace Fashion.Api.Controllers
 
 		[HttpGet]
 		[Route("pagelist")]
-		public async Task<MessageModel<PageModel<PermissionDto>>> GetPageList(int page, int size, string keyword = "")
+		public async Task<MessageModel<PageModel<PermissionDto>>> GetPageList(int page, int size, string conditions, string sorts)
 		{
-			if (string.IsNullOrEmpty(keyword) || string.IsNullOrWhiteSpace(keyword))
+			var data = await _permissionServices.GetPageList(page, size, conditions, sorts);
+			var moduleList = await _moduleServices.Query(d => d.IsDeleted == false);
+			var permissionsList = await _permissionServices.Query(d => d.IsDeleted == false);
+
+			foreach (var item in data.data)
 			{
-				keyword = "";
+				item.Link = moduleList.FirstOrDefault(t => t.Id == item.ParentId)?.LinkUrl;
+				item.hasChildren = permissionsList.Where(t => t.ParentId == item.Id).Any();
+			}
+			return new MessageModel<PageModel<PermissionDto>>()
+			{
+				msg = "获取成功",
+				success = true,
+				data = data
+			};
+		}
+
+		/// <summary>
+		/// 查询树形 Table
+		/// </summary>
+		/// <param name="parentId">父节点</param>
+		/// <returns></returns>
+		[HttpGet]
+		[Route("tree")]
+		[AllowAnonymous]
+		public async Task<MessageModel<List<PermissionDto>>> GetTreeTable(int parentId = 0)
+		{
+			var moduleList = await _moduleServices.Query(d => d.IsDeleted == false);
+			var permissionsList = await _permissionServices.Query(d => d.IsDeleted == false);
+			var children = permissionsList.Where(a => a.ParentId == parentId).OrderBy(a => a.OrderSort).ToList();
+			var list = new List<PermissionDto>();
+
+			foreach (var item in children)
+			{
+				var dto = new PermissionDto();
+				dto = _mapper.Map<Permission, PermissionDto>(item);
+				dto.Link = moduleList.FirstOrDefault(d => d.Id == item.ParentId)?.LinkUrl;
+				dto.hasChildren = permissionsList.Where(d => d.ParentId == item.Id).Any();
+				list.Add(dto);
 			}
 
-			var list = await _permissionServices.GetPageList(page, size, keyword);
-			return new MessageModel<PageModel<PermissionDto>>()
+			return new MessageModel<List<PermissionDto>>()
 			{
 				msg = "获取成功",
 				success = true,
