@@ -11,6 +11,8 @@ namespace Fashion.Model.Dtos
 
 		public string Code { get; set; }
 
+		public string Path { get; set; }
+
 		public string Name { get; set; }
 
 		public string ParentName { get; set; }
@@ -31,12 +33,9 @@ namespace Fashion.Model.Dtos
 
 		public bool Enabled { get; set; }
 
-		/// <summary>
-		/// 执行方法
-		/// </summary>
-		public string Action { get; set; }
+		public bool IsDeleted { get; set; }
 
 		public string Link { get; set; }
-		public bool hasChildren{ get; set; }
+		public bool hasChildren { get; set; }
 	}
 }

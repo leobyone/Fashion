@@ -50,11 +50,6 @@
             排序
             </summary>
         </member>
-        <member name="P:Fashion.Model.Dtos.PermissionDto.Action">
-            <summary>
-            执行方法
-            </summary>
-        </member>
         <member name="P:Fashion.Model.Dtos.RoleDto.Name">
             <summary>
             角色名

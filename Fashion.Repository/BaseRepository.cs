@@ -467,5 +467,29 @@ namespace Fashion.Repository
 			}
 			return await _db.Queryable(joinExpression).Where(whereLambda).Select(selectExpression).ToListAsync();
 		}
+
+		/// <summary>
+		/// 使用sql语句查询单条记录
+		/// </summary>
+		/// <typeparam name="TResult"></typeparam>
+		/// <param name="sql">sql语句</param>
+		/// <param name="parameters">参数</param>
+		/// <returns></returns>
+		public TResult QuerySingleBySql<TResult>(string sql, params SugarParameter[] parameters)
+		{
+			return _db.Ado.SqlQuerySingle<TResult>(sql, parameters);
+		}
+
+		/// <summary>
+		/// 使用sql语句查询列表
+		/// </summary>
+		/// <typeparam name="TResult"></typeparam>
+		/// <param name="sql">sql语句</param>
+		/// <param name="parameters">参数</param>
+		/// <returns></returns>
+		public List<TResult> QueryBySql<TResult>(string sql, params SugarParameter[] parameters)
+		{
+			return _db.Ado.SqlQuery<TResult>(sql, parameters);
+		}
 	}
 }

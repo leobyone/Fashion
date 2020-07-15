@@ -103,19 +103,20 @@ namespace Fashion.Api.Controllers
 		}
 
 		[HttpGet]
-		[Route("getbytoken")]
-		public async Task<MessageModel<UserDto>> GetUserByToken(string token)
+		[Route("info")]
+		public async Task<MessageModel<object>> GetUserInfoByToken(string token)
 		{
-			var data = new MessageModel<UserDto>();
+			var data = new MessageModel<object>();
 			if (!string.IsNullOrEmpty(token))
 			{
 				var tokenModel = JwtHelper.SerializeJwt(token);
 				if (tokenModel != null && tokenModel.UserId > 0)
 				{
-					var user = await _userServices.GetUserById(tokenModel.UserId);
+					var user = await _userServices.QueryById(tokenModel.UserId);
 					if (user != null)
 					{
-						data.data = user;
+						var userRoles = await _userServices.GetRoleNames(user.LoginName, user.Password);
+						data.data = new { name = user.LoginName, avatar = user.Avatar, roles = userRoles.Split(','), introduction = user.Remark };
 						data.success = true;
 						data.msg = "获取成功";
 					}

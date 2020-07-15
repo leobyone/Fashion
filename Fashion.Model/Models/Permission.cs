@@ -20,6 +20,9 @@ namespace Fashion.Model.Models
         /// </summary>
         [SugarColumn(Length = 50, IsNullable = true)]
         public string Code { get; set; }
+
+		public string Path { get; set; }
+
         /// <summary>
         /// 菜单显示名（如用户页、编辑(按钮)、删除(按钮)）
         /// </summary>

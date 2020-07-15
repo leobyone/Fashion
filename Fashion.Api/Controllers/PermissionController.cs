@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Fashion.Common.Helper;
 using Fashion.IServices;
 using Fashion.Model;
 using Fashion.Model.Dtos;
@@ -216,7 +217,7 @@ namespace Fashion.Api.Controllers
 		/// <param name="userId"></param >
 		/// <returns></returns>
 		[HttpGet]
-		[Route("permissionlistbyuserid")]
+		[Route("permissions-userid")]
 		public async Task<MessageModel<List<PermissionDto>>> GetPermissionListByUserId(int userId)
 		{
 			var data = await _permissionServices.GetPermissionListByUserId(userId);
@@ -225,6 +226,66 @@ namespace Fashion.Api.Controllers
 				msg = "获取成功",
 				success = true,
 				data = data
+			};
+		}
+
+		/// <summary>
+		/// 通过token获取菜单
+		/// </summary>
+		/// <param name="token"></param >
+		/// <returns></returns>
+		[HttpGet]
+		[Route("permissions-token")]
+		public async Task<MessageModel<List<Router>>> GetPermissionListByToken(string token)
+		{
+			if (string.IsNullOrEmpty(token))
+			{
+				return new MessageModel<List<Router>>()
+				{
+					msg = "token无效，请重新登录！",
+					success = false,
+					data = null
+				};
+			}
+
+			var tokenModel = JwtHelper.SerializeJwt(token);
+			if (tokenModel != null && tokenModel.UserId > 0)
+			{
+				var permissions = await _permissionServices.GetPermissionListByUserId(tokenModel.UserId);
+				var routers = (from item in permissions
+							   where item.IsDeleted == false && item.IsButton == false
+							   orderby item.Id
+							   select new Router
+							   {
+								   id = item.Id,
+								   pid = item.ParentId,
+								   path = item.Path,
+								   component = item.Path,
+								   name = item.Name,
+								   ishide = item.IsHide.ObjToBool(),
+								   meta = new Meta
+								   {
+									   title = item.Name,
+									   icon = item.Icon
+								   }
+							   }).ToList();
+
+				List<Router> newRouters = new List<Router>();
+				RecursionHelper.LoopRouterAppendChildren(routers, newRouters, 0);
+
+				return new MessageModel<List<Router>>()
+				{
+					msg = "获取成功",
+					success = true,
+					data = newRouters
+				};
+			}
+
+			return new MessageModel<List<Router>>()
+			{
+				msg = "token无效，请重新登录！",
+				success = false,
+				data = null
 			};
 		}
 

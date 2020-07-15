@@ -1,4 +1,5 @@
 ﻿using Fashion.Model;
+using SqlSugar;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
@@ -61,6 +62,10 @@ namespace Fashion.IRepository
 					Expression<Func<T, T2, T3, object[]>> joinExpression,
 					Expression<Func<T, T2, T3, TResult>> selectExpression,
 					Expression<Func<T, T2, T3, bool>> whereLambda = null) where T : class, new();
+
+		TResult QuerySingleBySql<TResult>(string sql, params SugarParameter[] parameters);
+
+		List<TResult> QueryBySql<TResult>(string sql, params SugarParameter[] parameters);
 
 	}
 }

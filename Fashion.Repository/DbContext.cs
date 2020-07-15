@@ -43,8 +43,7 @@ namespace Fashion.Repository
 		}
 
 		/// <summary>
-		/// 数据库上下文实例（自动关闭连接）
-		///   
+		/// 数据库上下文实例（自动关闭连接） 
 		/// </summary>
 		public static DbContext Context
 		{

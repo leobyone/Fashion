@@ -116,6 +116,13 @@
             配置构造函数，用来创建关系映射
             </summary>
         </member>
+        <member name="M:Fashion.Api.Controllers.AuthController.RefreshToken(System.String)">
+            <summary>
+            请求刷新Token（以旧换新）
+            </summary>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
         <member name="M:Fashion.Api.Controllers.PermissionController.GetTreeTable(System.Int32)">
             <summary>
             查询树形 Table
@@ -142,6 +149,13 @@
             通过用户获取菜单
             </summary>
             <param name="userId"></param >
+            <returns></returns>
+        </member>
+        <member name="M:Fashion.Api.Controllers.PermissionController.GetPermissionListByToken(System.String)">
+            <summary>
+            通过token获取菜单
+            </summary>
+            <param name="token"></param >
             <returns></returns>
         </member>
         <member name="M:Fashion.Api.Controllers.UploadController.UploadImgToQiNiu(System.Byte[],System.String)">
