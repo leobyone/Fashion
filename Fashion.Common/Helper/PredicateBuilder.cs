@@ -69,8 +69,13 @@ namespace Fashion.Common.Helper
 							expr1 = Expression.And(expr1, expr2);
 							break;
 						case 7://like
-							expr2 = Expression.Equal(Expression.Call(Expression.Property(p, item.Field), typeof(String).GetMethod("Contains"), new Expression[] { Expression.Constant(item.Value) }), Expression.Constant(true));
-							expr1 = Expression.And(expr1, expr2);
+							Expression contains = Expression.Call
+							(
+								Expression.Property(p, typeof(T).GetProperty(item.Field)),  //c.DataSourceName
+								typeof(string).GetMethod("Contains", new Type[] { typeof(string) }),// 反射使用.Contains()方法                         
+								Expression.Constant(item.Value)           // .Contains(optionName)
+							);
+							expr1 = Expression.And(expr1, contains);
 							break;
 					}
 

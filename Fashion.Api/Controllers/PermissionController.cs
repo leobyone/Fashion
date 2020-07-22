@@ -86,10 +86,10 @@ namespace Fashion.Api.Controllers
 
 		[HttpGet]
 		[Route("list")]
-		public async Task<MessageModel<List<Permission>>> GetList()
+		public async Task<MessageModel<List<PermissionDto>>> GetList(string conditions, string sorts)
 		{
-			var list = await _permissionServices.Query(t => t.IsDeleted == false && t.Enabled);
-			return new MessageModel<List<Permission>>()
+			var list = await _permissionServices.GetList(conditions, sorts);
+			return new MessageModel<List<PermissionDto>>()
 			{
 				msg = "获取成功",
 				success = true,
@@ -156,7 +156,7 @@ namespace Fashion.Api.Controllers
 			{
 				var dto = new PermissionDto();
 				dto = _mapper.Map<Permission, PermissionDto>(item);
-				dto.Link = moduleList.FirstOrDefault(d => d.Id == item.ParentId)?.LinkUrl;
+				dto.Link = moduleList.FirstOrDefault(d => d.Id == item.ModuleId)?.LinkUrl;
 				dto.hasChildren = permissionsList.Where(d => d.ParentId == item.Id).Any();
 				list.Add(dto);
 			}
@@ -253,16 +253,17 @@ namespace Fashion.Api.Controllers
 			{
 				var permissions = await _permissionServices.GetPermissionListByUserId(tokenModel.UserId);
 				var routers = (from item in permissions
-							   where item.IsDeleted == false && item.IsButton == false
+							   where item.IsDeleted == false
 							   orderby item.Id
 							   select new Router
 							   {
 								   id = item.Id,
 								   pid = item.ParentId,
 								   path = item.Path,
-								   component = item.Path,
+								   component = item.Component,
+								   redirect = item.Redirect,
 								   name = item.Name,
-								   ishide = item.IsHide.ObjToBool(),
+								   hidden = item.IsHide.ObjToBool(),
 								   meta = new Meta
 								   {
 									   title = item.Name,

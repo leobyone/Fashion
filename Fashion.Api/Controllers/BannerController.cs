@@ -98,7 +98,7 @@ namespace Fashion.Api.Controllers
 		[Route("pagelist")]
 		public async Task<MessageModel<PageModel<BannerDto>>> GetPageList(int page, int size, string conditions, string sorts)
 		{
-			var list = await _bannerServices.GetPageListAsync(page, size, conditions, sorts);
+			var list = await _bannerServices.GetPageList(page, size, conditions, sorts);
 			return new MessageModel<PageModel<BannerDto>>()
 			{
 				msg = "获取成功",

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Fashion.Model;
 using Fashion.Model.Dtos;
@@ -12,7 +13,8 @@ namespace Fashion.IServices
     public interface IModuleServices :IBaseServices<Module>
 	{
 		Task<ModuleDto> GetModuleById(int id);
-		Task<PageModel<ModuleDto>> GetPageList(int page, int size, string keyword);
+		Task<List<ModuleDto>> GetList(string conditions, string sorts);
+		Task<PageModel<ModuleDto>> GetPageList(int page, int size, string conditions, string sorts);
 	}
 }
 

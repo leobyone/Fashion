@@ -14,7 +14,7 @@ namespace Fashion.IServices
 	/// </summary>	
     public interface IBannerServices :IBaseServices<Banner>
 	{
-		Task<PageModel<BannerDto>> GetPageListAsync(int page, int size, string conditions, string sorts);
+		Task<PageModel<BannerDto>> GetPageList(int page, int size, string conditions, string sorts);
 	}
 }
 

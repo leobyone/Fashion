@@ -11,6 +11,7 @@ namespace Fashion.IServices
 	public interface IRoleServices : IBaseServices<Role>
 	{
 		Task<RoleDto> GetRoleById(int id);
-		Task<PageModel<RoleDto>> GetPageList(int page, int size, string keyword);
+		Task<List<RoleDto>> GetList(string conditions, string sorts);
+		Task<PageModel<RoleDto>> GetPageList(int page, int size, string conditions, string sorts);
 	}
 }

@@ -84,18 +84,6 @@ namespace Fashion.Common.Helper
 			var list = routers.Where(r => r.pid == parendId).ToList();
 			newRouters.AddRange(list);
 
-			foreach (var item in list)
-			{
-				if (parendId == 0)
-				{
-					item.component = "Layout";
-				}
-				else
-				{
-					item.component = item.component;
-				}
-			}
-
 			foreach (var child in newRouters)
 			{
 				child.children = new List<Router>();
@@ -154,8 +142,9 @@ namespace Fashion.Common.Helper
 		public int pid { get; set; }
 		public string path { get; set; }
 		public string component { get; set; }
+		public string redirect { get; set; }
 		public string name { get; set; }
-		public bool ishide { get; set; } = false;
+		public bool hidden { get; set; } = false;
 		public Meta meta { get; set; }
 		public List<Router> children { get; set; }
 	}

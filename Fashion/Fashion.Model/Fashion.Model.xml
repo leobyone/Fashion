@@ -50,6 +50,51 @@
             排序
             </summary>
         </member>
+        <member name="P:Fashion.Model.Dtos.BrandDto.Name">
+            <summary>
+            品牌名称
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Dtos.BrandDto.Logo">
+            <summary>
+            品牌logo
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Dtos.BrandDto.OrderSort">
+            <summary>
+            品牌排序
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Dtos.BrandDto.IsShow">
+            <summary>
+            是否显示
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Dtos.CategoryDto.Name">
+            <summary>
+            分类名称
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Dtos.CategoryDto.ParentId">
+            <summary>
+            父id
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Dtos.CategoryDto.Layer">
+            <summary>
+            层级
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Dtos.CategoryDto.OrderSort">
+            <summary>
+            分类排序
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Dtos.CategoryDto.Path">
+            <summary>
+            分类路径
+            </summary>
+        </member>
         <member name="P:Fashion.Model.Dtos.RoleDto.Name">
             <summary>
             角色名
@@ -223,6 +268,11 @@
         <member name="P:Fashion.Model.Models.Brand.Logo">
             <summary>
             品牌logo
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Models.Brand.IsShow">
+            <summary>
+            是否显示
             </summary>
         </member>
         <member name="P:Fashion.Model.Models.Brand.OrderSort">

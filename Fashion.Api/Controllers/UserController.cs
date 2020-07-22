@@ -66,6 +66,10 @@ namespace Fashion.Api.Controllers
 				data.msg = "添加成功";
 				data.data = id;
 			}
+			else
+			{
+				data.msg = "添加用户失败";
+			}
 
 			return data;
 		}

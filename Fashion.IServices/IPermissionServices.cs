@@ -13,6 +13,7 @@ namespace Fashion.IServices
     public interface IPermissionServices :IBaseServices<Permission>
 	{
 		Task<PermissionDto> GetPermissionById(int id);
+		Task<List<PermissionDto>> GetList(string conditions, string sorts);
 		Task<PageModel<PermissionDto>> GetPageList(int page, int size, string conditions, string sorts);
 		Task<AssignPermission> GetPermissionIdsByRoleId(int rid = 0);
 		Task<bool> Assign(int roleId, List<int> permissionIds);

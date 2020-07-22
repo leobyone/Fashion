@@ -41,6 +41,8 @@ namespace Fashion.Model.Models
 		/// </summary>
 		public string Path { get; set; }
 
+		public bool IsShow { get; set; }
+
 		public int? CreatorUserId { get; set; }
 
 		public DateTime CreationTime { get; set; }

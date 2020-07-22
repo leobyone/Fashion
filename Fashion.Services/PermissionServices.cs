@@ -169,6 +169,15 @@ namespace Fashion.Services
 			}
 			return dtos;
 		}
+
+		public async Task<List<PermissionDto>> GetList(string conditions, string sorts)
+		{
+			List<Condition> conditionList = Util.ConvertCodiontions(conditions);
+			string sort = Util.GetSortString(sorts);
+			var where = PredicateBuilder.GetWherePredicate<Permission>(conditionList);
+			var list = await baseRepository.Query(where);
+			return _mapper.Map<List<Permission>, List<PermissionDto>>(list);
+		}
 	}
 }
 

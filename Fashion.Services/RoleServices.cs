@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Fashion.Common;
+using Fashion.Common.Helper;
 using Fashion.IRepositoty;
 using Fashion.IServices;
 using Fashion.Model;
@@ -30,9 +32,12 @@ namespace Fashion.Services
 			return dto;
 		}
 
-		public async Task<PageModel<RoleDto>> GetPageList(int page, int size, string keyword)
+		public async Task<PageModel<RoleDto>> GetPageList(int page, int size, string conditions, string sorts)
 		{
-			var pageModel = await QueryPage(t => t.IsDeleted == false && (t.Name != null && t.Name.Contains(keyword)), page, size, "Id desc");
+			List<Condition> conditionList = Util.ConvertCodiontions(conditions);
+			string sort = Util.GetSortString(sorts);
+			var where = PredicateBuilder.GetWherePredicate<Role>(conditionList);
+			var pageModel = await baseRepository.QueryPage(where, page, size, sort);
 			var mapList = _mapper.Map<List<Role>, List<RoleDto>>(pageModel.data);
 
 			return new PageModel<RoleDto>()
@@ -40,9 +45,18 @@ namespace Fashion.Services
 				page = pageModel.page,
 				dataCount = pageModel.dataCount,
 				pageCount = pageModel.pageCount,
-				PageSize =  pageModel.page,
+				PageSize = pageModel.page,
 				data = mapList
 			};
+		}
+
+		public async Task<List<RoleDto>> GetList(string conditions, string sorts)
+		{
+			List<Condition> conditionList = Util.ConvertCodiontions(conditions);
+			string sort = Util.GetSortString(sorts);
+			var where = PredicateBuilder.GetWherePredicate<Role>(conditionList);
+			var list = await baseRepository.Query(where);
+			return _mapper.Map<List<Role>, List<RoleDto>>(list);
 		}
 	}
 }

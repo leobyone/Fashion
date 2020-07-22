@@ -23,10 +23,14 @@ namespace Fashion.Model.Models
 
 		public string Path { get; set; }
 
-        /// <summary>
-        /// 菜单显示名（如用户页、编辑(按钮)、删除(按钮)）
-        /// </summary>
-        [SugarColumn(Length = 50, IsNullable = true)]
+		public string Component { get; set; }
+
+		public string Redirect { get; set; }
+
+		/// <summary>
+		/// 菜单显示名（如用户页、编辑(按钮)、删除(按钮)）
+		/// </summary>
+		[SugarColumn(Length = 50, IsNullable = true)]
         public string Name { get; set; }
         /// <summary>
         /// 是否是按钮

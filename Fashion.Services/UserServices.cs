@@ -74,6 +74,15 @@ namespace Fashion.Services
 			};
 		}
 
+		public async Task<List<UserDto>> GetList(string conditions, string sorts)
+		{
+			List<Condition> conditionList = Util.ConvertCodiontions(conditions);
+			string sort = Util.GetSortString(sorts);
+			var where = PredicateBuilder.GetWherePredicate<User>(conditionList);
+			var list = await baseRepository.Query(where);
+			return _mapper.Map<List<User>, List<UserDto>>(list);
+		}
+
 		[UseTran]
 		public async Task<int> AddUser(User user)
 		{

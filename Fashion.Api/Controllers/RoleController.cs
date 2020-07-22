@@ -115,10 +115,10 @@ namespace Fashion.Api.Controllers
 
 		[HttpGet]
 		[Route("list")]
-		public async Task<MessageModel<List<Role>>> GetList()
+		public async Task<MessageModel<List<RoleDto>>> GetList(string conditions, string sorts)
 		{
-			var list = await _roleServices.Query(t => t.IsDeleted == false && t.Enabled);
-			return new MessageModel<List<Role>>()
+			var list = await _roleServices.GetList(conditions, sorts);
+			return new MessageModel<List<RoleDto>>()
 			{
 				msg = "获取成功",
 				success = true,
@@ -128,14 +128,9 @@ namespace Fashion.Api.Controllers
 
 		[HttpGet]
 		[Route("pagelist")]
-		public async Task<MessageModel<PageModel<RoleDto>>> GetPageList(int page, int size, string keyword = "")
+		public async Task<MessageModel<PageModel<RoleDto>>> GetPageList(int page, int size, string conditions, string sorts)
 		{
-			if (string.IsNullOrEmpty(keyword) || string.IsNullOrWhiteSpace(keyword))
-			{
-				keyword = "";
-			}
-
-			var list = await _roleServices.GetPageList(page, size, keyword);
+			var list = await _roleServices.GetPageList(page, size, conditions, sorts);
 			return new MessageModel<PageModel<RoleDto>>()
 			{
 				msg = "获取成功",

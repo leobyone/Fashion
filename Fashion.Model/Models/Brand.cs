@@ -23,6 +23,11 @@ namespace Fashion.Model.Models
 		public string Logo { get; set; }
 
 		/// <summary>
+		/// 是否显示
+		/// </summary>
+		public bool IsShow { get; set; }
+
+		/// <summary>
 		/// 品牌排序
 		/// </summary>
 		public int OrderSort { get; set; }

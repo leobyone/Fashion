@@ -1,6 +1,3 @@
-
-
-
 using System;
 using Fashion.IServices;
 using Fashion.IRepository;
@@ -30,7 +27,7 @@ namespace Fashion.Services
 			_mapper = mapper;
         }
 
-		public async Task<PageModel<BannerDto>> GetPageListAsync(int page, int size, string conditions, string sorts)
+		public async Task<PageModel<BannerDto>> GetPageList(int page, int size, string conditions, string sorts)
 		{
 			List<Condition> conditionList = Util.ConvertCodiontions(conditions);
 			string sort = Util.GetSortString(sorts);

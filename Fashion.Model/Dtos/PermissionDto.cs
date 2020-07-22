@@ -13,6 +13,10 @@ namespace Fashion.Model.Dtos
 
 		public string Path { get; set; }
 
+		public string Component { get; set; }
+
+		public string Redirect { get; set; }
+
 		public string Name { get; set; }
 
 		public string ParentName { get; set; }

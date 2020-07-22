@@ -92,10 +92,10 @@ namespace Fashion.Api.Controllers
 
 		[HttpGet]
 		[Route("list")]
-		public async Task<MessageModel<List<Module>>> GetList()
+		public async Task<MessageModel<List<ModuleDto>>> GetList(string conditions, string sorts)
 		{
-			var list = await _moduleServices.Query(t => t.IsDeleted == false && t.Enabled);
-			return new MessageModel<List<Module>>()
+			var list = await _moduleServices.GetList(conditions, sorts);
+			return new MessageModel<List<ModuleDto>>()
 			{
 				msg = "获取成功",
 				success = true,
@@ -105,14 +105,9 @@ namespace Fashion.Api.Controllers
 
 		[HttpGet]
 		[Route("pagelist")]
-		public async Task<MessageModel<PageModel<ModuleDto>>> GetPageList(int page, int size, string keyword = "")
+		public async Task<MessageModel<PageModel<ModuleDto>>> GetPageList(int page, int size, string conditions, string sorts)
 		{
-			if (string.IsNullOrEmpty(keyword) || string.IsNullOrWhiteSpace(keyword))
-			{
-				keyword = "";
-			}
-
-			var list = await _moduleServices.GetPageList(page, size, keyword);
+			var list = await _moduleServices.GetPageList(page, size, conditions, sorts);
 			return new MessageModel<PageModel<ModuleDto>>()
 			{
 				msg = "获取成功",
