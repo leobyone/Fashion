@@ -1,48 +1,39 @@
-﻿using SqlSugar;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Fashion.Model.Models
+namespace Fashion.Model.Dtos
 {
-	/// <summary>
-	/// 商品表
-	/// </summary>
-	public class Product: BaseEntity, IAudited, ISoftDelete
+	public class ProductDto
 	{
-		public Product()
-		{
-			this.CreationTime = DateTime.Now;
-			this.LastModificationTime = DateTime.Now;
-		}
 		/// <summary>
 		/// 商品货号
 		/// </summary>
-		[SugarColumn(Length = 50, IsNullable = false)]
 		public string PSN { get; set; }
 
 		/// <summary>
 		/// 商品分类id
 		/// </summary>
-		[SugarColumn(IsNullable = false)]
 		public int CategoryId { get; set; }
 
 		/// <summary>
 		/// 商品品牌id
 		/// </summary>
-		[SugarColumn(IsNullable = false)]
 		public int BrandId { get; set; }
+
+		/// <summary>
+		/// 商品品牌名称
+		/// </summary>
+		public int BrandName { get; set; }
 
 		/// <summary>
 		/// 商品sku组id
 		/// </summary>
-		[SugarColumn(IsNullable = false)]
 		public int SKUGid { get; set; }
 
 		/// <summary>
 		/// 商品名称
 		/// </summary>
-		[SugarColumn(Length = 200, IsNullable = false)]
 		public string Name { get; set; }
 
 		/// <summary>
@@ -139,15 +130,5 @@ namespace Fashion.Model.Models
 		/// 商品描述
 		/// </summary>
 		public string Description { get; set; }
-
-		public int? CreatorUserId { get; set; }
-
-		public DateTime CreationTime { get; set; }
-
-		public int? LastModifierUserId { get; set; }
-
-		public DateTime? LastModificationTime { get; set; }
-
-		public bool IsDeleted { get; set; }
 	}
 }

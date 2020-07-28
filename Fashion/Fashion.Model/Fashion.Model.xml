@@ -600,9 +600,9 @@
             商品成本价
             </summary>
         </member>
-        <member name="P:Fashion.Model.Models.Product.State">
+        <member name="P:Fashion.Model.Models.Product.Status">
             <summary>
-            0代表上架，1代表下架，2代表回收站
+            0代表草稿，1代表上架，2代表下架，3代表回收站
             </summary>
         </member>
         <member name="P:Fashion.Model.Models.Product.IsBest">

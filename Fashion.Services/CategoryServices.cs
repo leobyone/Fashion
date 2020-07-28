@@ -20,10 +20,11 @@ namespace Fashion.Services
         ICategoryRepository repository;
 		IMapper _mapper;
 
-		public CategoryServices(ICategoryRepository repository)
+		public CategoryServices(ICategoryRepository repository, IMapper mapper)
         {
             this.repository = repository;
             baseRepository = repository;
+			_mapper = mapper;
         }
 
 		public async Task<CategoryDto> GetCategoryById(int id)
