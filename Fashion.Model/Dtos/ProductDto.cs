@@ -6,6 +6,8 @@ namespace Fashion.Model.Dtos
 {
 	public class ProductDto
 	{
+		public int Id { get; set; }
+
 		/// <summary>
 		/// 商品货号
 		/// </summary>
@@ -24,7 +26,7 @@ namespace Fashion.Model.Dtos
 		/// <summary>
 		/// 商品品牌名称
 		/// </summary>
-		public int BrandName { get; set; }
+		public string BrandName { get; set; }
 
 		/// <summary>
 		/// 商品sku组id
