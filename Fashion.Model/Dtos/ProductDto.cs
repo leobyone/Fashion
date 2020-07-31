@@ -132,5 +132,10 @@ namespace Fashion.Model.Dtos
 		/// 商品描述
 		/// </summary>
 		public string Description { get; set; }
+
+		/// <summary>
+		/// 商品分类父类数组
+		/// </summary>
+		public List<int> CatePidArr { get; set; }
 	}
 }
