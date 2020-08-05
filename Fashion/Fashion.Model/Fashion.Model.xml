@@ -95,6 +95,136 @@
             分类路径
             </summary>
         </member>
+        <member name="P:Fashion.Model.Dtos.ProductDto.PSN">
+            <summary>
+            商品货号
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Dtos.ProductDto.CategoryId">
+            <summary>
+            商品分类id
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Dtos.ProductDto.BrandId">
+            <summary>
+            商品品牌id
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Dtos.ProductDto.BrandName">
+            <summary>
+            商品品牌名称
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Dtos.ProductDto.SKUGid">
+            <summary>
+            商品sku组id
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Dtos.ProductDto.Name">
+            <summary>
+            商品名称
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Dtos.ProductDto.ShopPrice">
+            <summary>
+            商品商城价
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Dtos.ProductDto.MarketPrice">
+            <summary>
+            商品市场价
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Dtos.ProductDto.CostPrice">
+            <summary>
+            商品成本价
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Dtos.ProductDto.Status">
+            <summary>
+            0代表草稿，1代表上架，2代表下架，3代表回收站
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Dtos.ProductDto.IsBest">
+            <summary>
+            商品是否精品
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Dtos.ProductDto.IsHot">
+            <summary>
+            商品是否热销
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Dtos.ProductDto.IsNew">
+            <summary>
+            商品是否新品
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Dtos.ProductDto.OrderSort">
+            <summary>
+            商品排序
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Dtos.ProductDto.Weight">
+            <summary>
+            商品重量
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Dtos.ProductDto.ShowImg">
+            <summary>
+            商品展示图片
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Dtos.ProductDto.SaleCount">
+            <summary>
+            销售数
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Dtos.ProductDto.VisitCount">
+            <summary>
+            访问数
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Dtos.ProductDto.ReviewCount">
+            <summary>
+            评价数
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Dtos.ProductDto.Star1">
+            <summary>
+            评价星星1
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Dtos.ProductDto.Star2">
+            <summary>
+            评价星星2
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Dtos.ProductDto.Star3">
+            <summary>
+            评价星星3
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Dtos.ProductDto.Star4">
+            <summary>
+            评价星星4
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Dtos.ProductDto.Star5">
+            <summary>
+            评价星星5
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Dtos.ProductDto.Description">
+            <summary>
+            商品描述
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Dtos.ProductDto.CatePidArr">
+            <summary>
+            商品分类父类数组
+            </summary>
+        </member>
         <member name="P:Fashion.Model.Dtos.RoleDto.Name">
             <summary>
             角色名
