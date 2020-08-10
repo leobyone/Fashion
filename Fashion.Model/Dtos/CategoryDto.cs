@@ -6,6 +6,8 @@ namespace Fashion.Model.Dtos
 {
 	public class CategoryDto
 	{
+		public int Id { get; set; }
+
 		/// <summary>
 		/// 分类名称
 		/// </summary>

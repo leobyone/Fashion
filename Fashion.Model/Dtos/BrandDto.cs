@@ -6,6 +6,8 @@ namespace Fashion.Model.Dtos
 {
 	public class BrandDto
 	{
+		public int Id { get; set; }
+
 		/// <summary>
 		/// 品牌名称
 		/// </summary>

@@ -1,25 +1,27 @@
-﻿using SqlSugar;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Fashion.Model.Models
+namespace Fashion.Model.Dtos
 {
-	/// <summary>
-	/// 属性表
-	/// </summary>
-	public class Attribute : BaseEntity, IAudited, ISoftDelete
+	public class AttributeDto
 	{
+		public int Id { get; set; }
+
 		/// <summary>
 		/// 属性名称
 		/// </summary>
-		[SugarColumn(Length = 50, IsNullable = false)]
 		public string Name { get; set; }
 
 		/// <summary>
 		/// 分组id
 		/// </summary>
 		public int AttributeGroupId { get; set; }
+
+		/// <summary>
+		/// 分组名
+		/// </summary>
+		public string AttributeGroupName { get; set; }
 
 		/// <summary>
 		/// 展示类型(0代表属性,1代表参数)
@@ -45,15 +47,5 @@ namespace Fashion.Model.Models
 		/// 排序
 		/// </summary>
 		public int OrderSort { get; set; }
-
-		public int? CreatorUserId { get; set; }
-
-		public DateTime CreationTime { get; set; }
-
-		public int? LastModifierUserId { get; set; }
-
-		public DateTime? LastModificationTime { get; set; }
-
-		public bool IsDeleted { get; set; }
 	}
 }
