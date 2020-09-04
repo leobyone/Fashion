@@ -40,6 +40,8 @@ namespace Fashion.Model.Models
 	  public string  Address { get; set; }
 
 	  public bool  ? IsDeleted { get; set; }
+
+	  public string  Avatar { get; set; }
  
     }
 }

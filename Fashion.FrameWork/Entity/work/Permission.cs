@@ -19,9 +19,9 @@ namespace Fashion.Model.Models
 
 	  public bool  ? IsHide { get; set; }
 
-	  public int  Pid { get; set; }
+	  public int  ParentId { get; set; }
 
-	  public int  Mid { get; set; }
+	  public int  ModuleId { get; set; }
 
 	  public int  OrderSort { get; set; }
 
@@ -30,6 +30,8 @@ namespace Fashion.Model.Models
 	  public string  Description { get; set; }
 
 	  public bool  Enabled { get; set; }
+
+	  public string  Action { get; set; }
 
 	  public DateTime  CreationTime { get; set; }
 
@@ -40,6 +42,12 @@ namespace Fashion.Model.Models
 	  public DateTime  ? LastModificationTime { get; set; }
 
 	  public bool  ? IsDeleted { get; set; }
+
+	  public string  Path { get; set; }
+
+	  public string  Component { get; set; }
+
+	  public string  Redirect { get; set; }
  
     }
 }

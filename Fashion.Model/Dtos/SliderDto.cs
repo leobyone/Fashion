@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Fashion.Model.Dtos
 {
-	public class BannerDto
+	public class SliderDto
 	{
 		public int Id { get; set; }
 
@@ -14,10 +14,7 @@ namespace Fashion.Model.Dtos
 
 		public string Url { get; set; }
 
-		public int Target { get; set; }
-
 		public string Description { get; set; }
-
 		/// <summary>
 		/// 排序
 		/// </summary>

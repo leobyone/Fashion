@@ -45,6 +45,46 @@
             职能
             </summary>
         </member>
+        <member name="P:Fashion.Model.Dtos.AttributeDto.Name">
+            <summary>
+            属性名称
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Dtos.AttributeDto.AttributeGroupId">
+            <summary>
+            分组id
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Dtos.AttributeDto.AttributeGroupName">
+            <summary>
+            分组名
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Dtos.AttributeDto.ShowType">
+            <summary>
+            展示类型(0代表属性,1代表参数)
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Dtos.AttributeDto.IsFilter">
+            <summary>
+            是否是筛选属性
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Dtos.AttributeDto.SelectType">
+            <summary>
+            属性是否可选（0代表唯一，1代表单选，2代表多选）
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Dtos.AttributeDto.Values">
+            <summary>
+            属性值
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Dtos.AttributeDto.OrderSort">
+            <summary>
+            排序
+            </summary>
+        </member>
         <member name="P:Fashion.Model.Dtos.BannerDto.OrderSort">
             <summary>
             排序
@@ -240,6 +280,11 @@
             是否激活
             </summary>
         </member>
+        <member name="P:Fashion.Model.Dtos.SliderDto.OrderSort">
+            <summary>
+            排序
+            </summary>
+        </member>
         <member name="P:Fashion.Model.Dtos.UserDto.LoginName">
             <summary>
             登录账号
@@ -307,12 +352,22 @@
         </member>
         <member name="P:Fashion.Model.Models.Attribute.ShowType">
             <summary>
-            展示类型(0代表文字,1代表图片)
+            展示类型(0代表属性,1代表参数)
             </summary>
         </member>
         <member name="P:Fashion.Model.Models.Attribute.IsFilter">
             <summary>
             是否是筛选属性
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Models.Attribute.SelectType">
+            <summary>
+            属性是否可选（0代表唯一，1代表单选，2代表多选）
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Models.Attribute.Values">
+            <summary>
+            属性值
             </summary>
         </member>
         <member name="P:Fashion.Model.Models.Attribute.OrderSort">
@@ -362,7 +417,7 @@
         </member>
         <member name="T:Fashion.Model.Models.Banner">
             <summary>
-            轮播图片表
+            横幅表
             </summary>
         </member>
         <member name="P:Fashion.Model.Models.Banner.Title">
@@ -923,6 +978,26 @@
         <member name="P:Fashion.Model.Models.RoleModulePermission.PermissionId">
             <summary>
             按钮ID
+            </summary>
+        </member>
+        <member name="T:Fashion.Model.Models.Slider">
+            <summary>
+            轮播图表
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Models.Slider.Title">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Models.Slider.Url">
+            <summary>
+            链接
+            </summary>
+        </member>
+        <member name="P:Fashion.Model.Models.Slider.OrderSort">
+            <summary>
+            排序
             </summary>
         </member>
         <member name="T:Fashion.Model.Models.User">

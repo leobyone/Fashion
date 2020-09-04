@@ -1,17 +1,15 @@
-ï»¿using SqlSugar;
+using SqlSugar;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Fashion.Model.Models
 {
 	/// <summary>
-	/// æ¨ªå¹…è¡¨
+	/// ÂÖ²¥Í¼±í
 	/// </summary>
-	public class Banner : BaseEntity, IAudited, ISoftDelete
+	public class Slider : BaseEntity, IAudited, ISoftDelete
 	{
 		/// <summary>
-		/// åç§°
+		/// Ãû³Æ
 		/// </summary>
 		[SugarColumn(Length = 50, IsNullable = false)]
 		public string Title { get; set; }
@@ -19,15 +17,13 @@ namespace Fashion.Model.Models
 		public string Image { get; set; }
 
 		/// <summary>
-		/// é“¾æ¥
+		/// Á´½Ó
 		/// </summary>
 		[SugarColumn(IsNullable = false)]
 		public string Url { get; set; }
 
-		public int Target { get; set; }
-
 		/// <summary>
-		/// æ’åº
+		/// ÅÅĞò
 		/// </summary>
 		public int OrderSort { get; set; }
 
@@ -44,3 +40,5 @@ namespace Fashion.Model.Models
 		public bool IsDeleted { get; set; }
 	}
 }
+
+	

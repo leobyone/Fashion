@@ -320,7 +320,7 @@ class SqlServerDbTypeMap
                 case "xml": commonType = typeof(string); break;
                 default: commonType = typeof(object); break;
             }
-            return commonType;
+            return commonType; 
         }
     }
 class config
